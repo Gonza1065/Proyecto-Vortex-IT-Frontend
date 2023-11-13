@@ -1,0 +1,21 @@
+.form-add-product {
+  margin-left: 100px;
+  margin-right: 100px;
+  display: flex;
+  flex-direction: column;
+}
+.form-add-product input {
+  padding: 20px;
+  margin: 10px;
+}
+.btn-add-product {
+  text-align: center;
+}
+.btn-add-product button {
+  padding: 5px;
+  font-size: 20px;
+  border-style: none;
+  background-color: burlywood;
+  border-radius: 5px;
+  cursor: pointer;
+}

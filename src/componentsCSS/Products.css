@@ -1,0 +1,53 @@
+.product-title {
+  text-decoration: underline;
+  font-size: 30px;
+}
+.icons {
+  display: flex;
+  justify-content: center;
+}
+.icons div {
+  padding: 10px;
+}
+.icon-add-to-cart svg {
+  height: 30px;
+  width: 30px;
+  background-color: green;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 5px;
+}
+.icon-update-product svg {
+  background-color: cornflowerblue;
+  height: 30px;
+  width: 30px;
+  color: white;
+  padding: 5px;
+  cursor: pointer;
+}
+.icon-delete-product svg {
+  height: 30px;
+  width: 30px;
+  background-color: red;
+  color: white;
+  padding: 5px;
+  cursor: pointer;
+}
+.btn-see-details {
+  padding: 5px;
+}
+.btn-see-details button {
+  background-color: goldenrod;
+  border-style: none;
+  padding: 5px;
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+}
+.btn-see-details button:hover {
+  transition: 0.5s;
+  background-color: rgb(255, 204, 75);
+}
