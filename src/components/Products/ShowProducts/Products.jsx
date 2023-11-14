@@ -1,7 +1,7 @@
 import { faPen, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import "../../componentsCSS/Products.css";
+import "../../../componentsCSS/Products/Products.css";
 export function Products({ product, onDelete }) {
   const handleDeleteClick = () => {
     onDelete(product._id);
@@ -30,7 +30,9 @@ export function Products({ product, onDelete }) {
           <FontAwesomeIcon icon={faTrash} />
         </div>
         <div className="btn-see-details">
-          <button>See details</button>
+          <Link to={`/see-product/${product._id}`}>
+            <button>See details</button>
+          </Link>
         </div>
       </div>
     </>

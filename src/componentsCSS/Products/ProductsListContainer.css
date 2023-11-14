@@ -1,3 +1,7 @@
+.title-products {
+  text-align: center;
+  text-decoration: underline;
+}
 .products {
   display: grid;
   grid-template-columns: repeat(3, 33%);

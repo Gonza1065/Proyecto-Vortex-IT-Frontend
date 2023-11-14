@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../../../componentsCSS/FormAddProduct.css";
+import "../../../componentsCSS/Products/FormAddProduct.css";
 export function FormAddProduct() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({

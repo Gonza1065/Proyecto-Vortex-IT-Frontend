@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "../../componentsCSS/ProductsListContainer.css";
+import "../../../componentsCSS/Products/ProductsListContainer.css";
 import { ProductsList } from "./ProductsList";
 export function ProductListContainer() {
   const [getProducts, setGetProducts] = useState([]);
@@ -15,6 +15,9 @@ export function ProductListContainer() {
 
   return (
     <>
+      <div className="title-products">
+        <h1>Products</h1>
+      </div>
       <section className="products">
         <ProductsList products={getProducts} />
       </section>

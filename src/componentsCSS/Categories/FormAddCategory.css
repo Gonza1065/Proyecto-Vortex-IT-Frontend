@@ -1,0 +1,15 @@
+.section-form-add-category {
+  text-align: center;
+}
+.form-add-category input {
+  padding: 10px;
+  margin-bottom: 20px;
+}
+.btn-add-category button {
+  padding: 5px;
+  font-size: 20px;
+  border-style: none;
+  background-color: burlywood;
+  border-radius: 5px;
+  cursor: pointer;
+}

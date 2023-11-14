@@ -4,7 +4,8 @@ export const CrudContext = createContext();
 
 export const Provider = ({ children }) => {
   const [productsList, setProductsList] = useState([]);
-  const deleteProduct = async (productId) => {
+  const [categoriesList, setCategoriesList] = useState([]);
+  const deleteProductById = async (productId) => {
     try {
       const response = await fetch(
         `http://localhost:5000/api/products/delete-product/${productId}`,
@@ -16,11 +17,9 @@ export const Provider = ({ children }) => {
         }
       );
       if (response.ok) {
-        console.log(productsList);
         setProductsList((prevProductsList) =>
           prevProductsList.filter((product) => product._id !== productId)
         );
-        console.log(productsList);
       } else {
         console.log(response);
       }
@@ -28,8 +27,28 @@ export const Provider = ({ children }) => {
       console.log(err);
     }
   };
+  const deleteCategoryById = async (categoryId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/category/delete-category/${categoryId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (response.ok) {
+        setCategoriesList(
+          categoriesList.filter((category) => category._id !== categoryId)
+        );
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
-    <CrudContext.Provider value={{ deleteProduct }}>
+    <CrudContext.Provider value={{ deleteProductById, deleteCategoryById }}>
       {children}
     </CrudContext.Provider>
   );

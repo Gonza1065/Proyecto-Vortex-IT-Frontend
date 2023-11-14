@@ -1,0 +1,7 @@
+.btn-add-category {
+  text-decoration: underline;
+}
+.btn-add-category a {
+  color: black;
+  font-weight: 700;
+}

@@ -1,0 +1,8 @@
+.categories-title {
+  text-align: center;
+  text-decoration: underline;
+}
+.section-categories {
+  display: flex;
+  justify-content: center;
+}

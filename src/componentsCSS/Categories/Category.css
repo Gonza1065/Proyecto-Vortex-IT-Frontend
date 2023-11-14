@@ -1,0 +1,12 @@
+.category-name {
+  text-decoration: underline;
+}
+.icon-update-category {
+  cursor: pointer;
+}
+.icon-update-category a {
+  color: black;
+}
+.icon-delete-category {
+  cursor: pointer;
+}
