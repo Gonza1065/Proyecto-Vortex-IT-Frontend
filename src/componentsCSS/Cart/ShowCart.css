@@ -1,0 +1,22 @@
+.article-product-in-cart {
+  background-color: burlywood;
+  border-radius: 5px;
+  margin: 20px;
+  border-color: rgb(255, 145, 0);
+  border-style: solid;
+}
+.products-in-cart {
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+}
+.quantity-price {
+  display: flex;
+  justify-content: center;
+  justify-content: space-around;
+}
+.icon-delete-product-cart svg {
+  height: 30px;
+  margin-top: 20px;
+  cursor: pointer;
+}

@@ -7,7 +7,7 @@ export function FormUpdateProduct() {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    category: "",
+    name: "",
     price: "",
   });
   useEffect(() => {
@@ -17,7 +17,7 @@ export function FormUpdateProduct() {
         setFormData({
           title: data.title,
           description: data.description,
-          category: data.category.name,
+          name: data.category.name,
           price: data.price,
         });
       })
@@ -41,7 +41,7 @@ export function FormUpdateProduct() {
         body: JSON.stringify(formData),
       })
         .then((res) => res.json())
-        .then((data) => console.log(data))
+        .then((data) => navigate("/"))
         .catch((err) => console.log(err));
     } catch (err) {
       console.log(err);
@@ -67,9 +67,9 @@ export function FormUpdateProduct() {
         />
         <input
           type="text"
-          name="category"
+          name="name"
           placeholder="Category"
-          value={formData.category}
+          value={formData.name}
           onChange={handleInputChange}
         />
         <input

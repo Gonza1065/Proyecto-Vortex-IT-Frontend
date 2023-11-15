@@ -9,8 +9,18 @@ export function FormAddProduct() {
     category: "",
     price: "",
   });
+  const [errorMessage, setErrorMessage] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (
+      !formData.title ||
+      !formData.description ||
+      !formData.category ||
+      !formData.price
+    ) {
+      setErrorMessage("All fields are required");
+      return;
+    }
     try {
       const response = await fetch(
         "http://localhost:5000/api/products/add-product",
@@ -22,6 +32,9 @@ export function FormAddProduct() {
       );
       if (response.ok) {
         navigate("/");
+      } else {
+        const errorData = await response.json();
+        setErrorMessage(errorData.message);
       }
     } catch (err) {
       console.log(err);
@@ -30,6 +43,7 @@ export function FormAddProduct() {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    setErrorMessage("");
   };
   return (
     <>
@@ -65,6 +79,7 @@ export function FormAddProduct() {
         <div className="btn-add-product">
           <button type="submit">Add Product</button>
         </div>
+        {errorMessage && <p>{errorMessage}</p>}
       </form>
     </>
   );

@@ -4,10 +4,7 @@ import { ProductsList } from "./ProductsList";
 export function ProductListContainer() {
   const [getProducts, setGetProducts] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/api/products", {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    })
+    fetch("http://localhost:5000/api/products")
       .then((res) => res.json())
       .then((data) => setGetProducts(data))
       .catch((err) => console.log(err));

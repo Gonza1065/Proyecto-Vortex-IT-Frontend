@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Cart } from "./components/Cart/Cart";
+import { ShowCart } from "./components/Cart/ShowCart";
 import { AddCategory } from "./components/Category/CreateCategory/AddCategory";
 import { FormAddCategory } from "./components/Category/CreateCategory/FormAddCategory";
 import { SeeCategoryById } from "./components/Category/SeeCategoryById/SeeCategoryById";
@@ -37,6 +38,7 @@ function App() {
               path="/update-category/:id"
               element={<FormUpdateCategory />}
             />
+            <Route path="/cart" element={<ShowCart />} />
           </Routes>
         </BrowserRouter>
       </Provider>
