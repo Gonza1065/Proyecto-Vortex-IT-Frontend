@@ -10,32 +10,26 @@ import { NavBar } from "./components/NavBar/NavBar";
 import { FormAddProduct } from "./components/Products/CreateProduct/FormAddProduct";
 import { SeeProductById } from "./components/Products/SeeProductById/SeeProductById";
 import { FormUpdateProduct } from "./components/Products/UpdateProduct/FormUpdateProduct";
-import { Provider } from "./components/context/context";
 function App() {
   return (
     <>
-      <Provider>
-        <BrowserRouter>
-          <NavBar />
-          <Routes>
-            <Route path="/" element={<MainPage />} />
-            <Route path="/add-product" element={<FormAddProduct />} />
-            <Route path="/update-product/:id" element={<FormUpdateProduct />} />
-            <Route path="/see-product/:id" element={<SeeProductById />} />
-            <Route path="/see-category/:id" element={<SeeCategoryById />} />
-            <Route path="/add-category" element={<FormAddCategory />} />
-            <Route
-              path="/update-category/:id"
-              element={<FormUpdateCategory />}
-            />
-            <Route path="/cart" element={<ShowCart />} />
-            <Route
-              path="/update-product-cart/:id"
-              element={<UpdateProductCart />}
-            />
-          </Routes>
-        </BrowserRouter>
-      </Provider>
+      <BrowserRouter>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/add-product" element={<FormAddProduct />} />
+          <Route path="/update-product/:id" element={<FormUpdateProduct />} />
+          <Route path="/see-product/:id" element={<SeeProductById />} />
+          <Route path="/see-category/:id" element={<SeeCategoryById />} />
+          <Route path="/add-category" element={<FormAddCategory />} />
+          <Route path="/update-category/:id" element={<FormUpdateCategory />} />
+          <Route path="/cart" element={<ShowCart />} />
+          <Route
+            path="/update-product-cart/:id"
+            element={<UpdateProductCart />}
+          />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
