@@ -10,13 +10,34 @@ export function CategoriesListContainer() {
       .catch((err) => console.log(err));
   }, []);
 
+  const handleDeleteClick = async (categoryId) => {
+    try {
+      await fetch(
+        `http://localhost:5000/api/category/delete-category/${categoryId}`,
+        {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      const updatedCategories = categories.filter(
+        (category) => category._id !== categoryId
+      );
+      setCategories(updatedCategories);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
       <div className="categories-title">
         <h1>Categories</h1>
       </div>
       <section className="section-categories">
-        <CategoriesList categories={categories} />
+        <CategoriesList
+          categories={categories}
+          onDeleteClick={handleDeleteClick}
+        />
       </section>
     </>
   );

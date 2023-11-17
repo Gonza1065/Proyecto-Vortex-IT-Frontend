@@ -1,14 +1,11 @@
-import { useContext } from "react";
 import "../../../componentsCSS/Products/ProductsList.css";
-import { CrudContext } from "../../context/context";
 import { Products } from "./Products";
-export function ProductsList({ products }) {
-  const { deleteProductById } = useContext(CrudContext);
+export function ProductsList({ products, onDeleteClick }) {
   return (
     <>
       {products.map((product) => (
         <article key={product._id} className="article-product">
-          <Products product={product} onDelete={deleteProductById} />
+          <Products product={product} onDeleteClick={onDeleteClick} />
         </article>
       ))}
     </>

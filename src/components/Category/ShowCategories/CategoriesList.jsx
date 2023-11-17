@@ -1,9 +1,6 @@
-import { useContext } from "react";
 import "../../../componentsCSS/Categories/CategoriesList.css";
-import { CrudContext } from "../../context/context";
 import { Category } from "./Category";
-export function CategoriesList({ categories }) {
-  const { deleteCategoryById } = useContext(CrudContext);
+export function CategoriesList({ categories, onDeleteClick }) {
   return (
     <>
       {categories.map((category) => (
@@ -11,7 +8,7 @@ export function CategoriesList({ categories }) {
           <Category
             category={category}
             key={category._id}
-            onDelete={deleteCategoryById}
+            onDeleteClick={onDeleteClick}
           />
         </article>
       ))}

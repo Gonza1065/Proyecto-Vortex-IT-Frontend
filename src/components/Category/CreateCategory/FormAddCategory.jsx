@@ -3,11 +3,16 @@ import { useNavigate } from "react-router-dom";
 import "../../../componentsCSS/Categories/FormAddCategory.css";
 export function FormAddCategory() {
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
   });
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!formData.name) {
+      setErrorMessage(true);
+      return;
+    }
     try {
       const response = await fetch(
         "http://localhost:5000/api/category/add-category",
@@ -19,6 +24,9 @@ export function FormAddCategory() {
       );
       if (response.ok) {
         navigate("/");
+      } else {
+        const errorData = await response.json();
+        setErrorMessage(errorData.message);
       }
     } catch (err) {
       console.log(err);
@@ -27,6 +35,7 @@ export function FormAddCategory() {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    setErrorMessage(true);
   };
   return (
     <>
@@ -42,6 +51,7 @@ export function FormAddCategory() {
           <div className="btn-add-category">
             <button type="submit">Add Category</button>
           </div>
+          {errorMessage && <p>{errorMessage}</p>}
         </form>
       </section>
     </>

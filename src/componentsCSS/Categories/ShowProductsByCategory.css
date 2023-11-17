@@ -1,0 +1,23 @@
+.products-filtered {
+  text-align: center;
+  text-decoration: underline;
+}
+.select-categories {
+  margin-left: 50px;
+}
+.select-categories select {
+  padding: 5px;
+  background-color: blanchedalmond;
+  border-color: rgb(253, 173, 52);
+  border-radius: 5px;
+  font-family: "Mulish", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+}
+.message-products {
+  text-align: center;
+}
+.message-products h3 {
+  font-weight: 600;
+  color: grey;
+}

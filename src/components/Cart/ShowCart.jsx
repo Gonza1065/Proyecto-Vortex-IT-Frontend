@@ -1,36 +1,94 @@
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "../../componentsCSS/Cart/ShowCart.css";
-import { CrudContext } from "../context/context";
-import { QuantityProducts } from "./QuantityProducts/QuantityProducts";
-import { ViewPriceTotal } from "./ViewPriceTotal/ViewPriceTotal";
 export function ShowCart() {
   const [productsInCart, setProductsInCart] = useState([]);
-
-  const { deleteProductToCart } = useContext(CrudContext);
-
-  const handleDeleteClick = (itemId) => {
-    deleteProductToCart(itemId);
-  };
-
+  const [quantity, setQuantity] = useState(0);
+  const [total, setTotal] = useState(0);
   useEffect(() => {
     fetch("http://localhost:5000/api/cart")
       .then((res) => res.json())
       .then((data) => setProductsInCart(data))
       .catch((err) => console.log(err));
   }, []);
-
+  const handleProductCartDelete = async (itemId) => {
+    try {
+      await fetch(
+        `http://localhost:5000/api/cart/delete-product-cart/${itemId}`,
+        {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      const updatedProductsInCart = productsInCart.map((product) => {
+        return {
+          ...product,
+          items: product.items.filter((item) => item._id !== itemId),
+        };
+      });
+      setProductsInCart(updatedProductsInCart);
+    } catch (err) {
+      console.log(err);
+    }
+    fetch("http://localhost:5000/api/cart")
+      .then((res) => res.json())
+      .then((data) => setProductsInCart(data))
+      .catch((err) => console.log(err));
+  };
+  const handleCartDelete = async () => {
+    try {
+      await fetch("http://localhost:5000/api/cart/delete-cart", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      });
+    } catch (err) {
+      console.log(err);
+    }
+    fetch("http://localhost:5000/api/cart")
+      .then((res) => res.json())
+      .then((data) => setProductsInCart(data))
+      .catch((err) => console.log(err));
+  };
+  const quantityProducts = async () => {
+    try {
+      await fetch("http://localhost:5000/api/cart/quantity-products")
+        .then((res) => res.json())
+        .then((data) => setQuantity(data.message))
+        .catch((err) => console.log(err));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  quantityProducts();
+  const priceTotal = async () => {
+    try {
+      await fetch("http://localhost:5000/api/cart/price-total")
+        .then((res) => res.json())
+        .then((data) => setTotal(data.total))
+        .catch((err) => console.log(err));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  priceTotal();
   return (
     <>
-      <h1>Cart</h1>
-      {productsInCart.length > 0 &&
+      <div className="title-cart">
+        <h1>Cart</h1>
+      </div>
+      {productsInCart.length > 0 ? (
         productsInCart.map((product) =>
           product.items.map((item) => (
             <article key={item._id} className="article-product-in-cart">
               <div className="products-in-cart">
                 <div className="product-in-cart-title">
-                  <h1>{item.productId.title}</h1>
+                  <h1>
+                    {item.productId
+                      ? item.productId.title
+                      : "Title not available"}
+                  </h1>
                 </div>
                 <div>
                   {item.productId.category.name ? (
@@ -48,16 +106,33 @@ export function ShowCart() {
                 <div className="icon-delete-product-cart">
                   <FontAwesomeIcon
                     icon={faTrash}
-                    onClick={() => handleDeleteClick(item.productId._id)}
+                    onClick={() => handleProductCartDelete(item.productId._id)}
                   />
+                </div>
+                <div className="icon-update-product-cart">
+                  <Link to={`/update-product-cart/${item.productId._id}`}>
+                    <FontAwesomeIcon icon={faPen} />
+                  </Link>
                 </div>
               </div>
             </article>
           ))
-        )}
-      <div className="quantity-price">
-        <QuantityProducts />
-        <ViewPriceTotal />
+        )
+      ) : (
+        <div>
+          <p>The cart is empty</p>
+        </div>
+      )}
+      <div className="quantity-price-delete">
+        <div className="btn-delete-cart">
+          <button onClick={handleCartDelete}>Delete Cart</button>
+        </div>
+        <div className="quantity-products">
+          <h1>Total Products: {quantity}</h1>
+        </div>
+        <div>
+          <h1>Price total: {total}</h1>
+        </div>
       </div>
     </>
   );

@@ -1,3 +1,11 @@
+.title-cart {
+  text-align: center;
+  text-decoration: underline;
+}
+.title-cart h1 {
+  background-color: bisque;
+  padding: 5px;
+}
 .article-product-in-cart {
   background-color: burlywood;
   border-radius: 5px;
@@ -10,7 +18,7 @@
   justify-content: center;
   gap: 5rem;
 }
-.quantity-price {
+.quantity-price-delete {
   display: flex;
   justify-content: center;
   justify-content: space-around;
@@ -18,5 +26,23 @@
 .icon-delete-product-cart svg {
   height: 30px;
   margin-top: 20px;
+  cursor: pointer;
+}
+.icon-update-product-cart svg {
+  height: 30px;
+  margin-top: 20px;
+  cursor: pointer;
+  color: black;
+}
+.btn-delete-cart {
+  margin-top: 20px;
+}
+.btn-delete-cart button {
+  border-style: none;
+  background-color: darkred;
+  color: white;
+  padding: 8px;
+  font-size: 25px;
+  border-radius: 10px;
   cursor: pointer;
 }

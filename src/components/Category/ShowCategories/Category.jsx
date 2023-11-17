@@ -2,10 +2,7 @@ import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import "../../../componentsCSS/Categories/Category.css";
-export function Category({ category, onDelete }) {
-  const handleDeleteClick = () => {
-    onDelete(category._id);
-  };
+export function Category({ category, onDeleteClick }) {
   return (
     <>
       <div className="category-name">
@@ -17,7 +14,10 @@ export function Category({ category, onDelete }) {
             <FontAwesomeIcon icon={faPen} />
           </Link>
         </div>
-        <div className="icon-delete-category" onClick={handleDeleteClick}>
+        <div
+          className="icon-delete-category"
+          onClick={() => onDeleteClick(category._id)}
+        >
           <FontAwesomeIcon icon={faTrash} />
         </div>
         <div className="btn-see-details">

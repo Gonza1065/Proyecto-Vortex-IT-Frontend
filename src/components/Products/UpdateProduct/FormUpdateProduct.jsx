@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
+import "../../../componentsCSS/Products/FormUpdateProduct.css";
 export function FormUpdateProduct() {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -50,7 +50,7 @@ export function FormUpdateProduct() {
 
   return (
     <>
-      <form action="" onSubmit={handleSubmit}>
+      <form action="" onSubmit={handleSubmit} className="form-update-product">
         <input
           type="text"
           name="title"
@@ -79,7 +79,9 @@ export function FormUpdateProduct() {
           value={formData.price}
           onChange={handleInputChange}
         />
-        <button type="submit">Update Product</button>
+        <div className="btn-update-product">
+          <button type="submit">Update Product</button>
+        </div>
       </form>
     </>
   );

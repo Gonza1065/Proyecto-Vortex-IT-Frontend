@@ -2,11 +2,7 @@ import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import "../../../componentsCSS/Products/Products.css";
-export function Products({ product, onDelete }) {
-  const handleDeleteClick = () => {
-    onDelete(product._id);
-  };
-
+export function Products({ product, onDeleteClick }) {
   return (
     <>
       <div className="product-title">
@@ -28,7 +24,10 @@ export function Products({ product, onDelete }) {
             <FontAwesomeIcon icon={faPen} />
           </Link>
         </div>
-        <div className="icon-delete-product" onClick={handleDeleteClick}>
+        <div
+          className="icon-delete-product"
+          onClick={() => onDeleteClick(product._id)}
+        >
           <FontAwesomeIcon icon={faTrash} />
         </div>
         <div className="btn-see-details">
