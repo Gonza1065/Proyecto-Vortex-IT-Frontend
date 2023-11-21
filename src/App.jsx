@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import { ShowCart } from "./components/Cart/ShowCart";
+import { ShowCart } from "./components/Cart/ShowCart/ShowCart";
 import { UpdateProductCart } from "./components/Cart/UpdateProductCart/UpdateProductCart";
 import { FormAddCategory } from "./components/Category/CreateCategory/FormAddCategory";
 import { SeeCategoryById } from "./components/Category/SeeCategoryById/SeeCategoryById";

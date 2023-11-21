@@ -3,14 +3,3 @@
   width: 40px;
   color: black;
 }
-.see-quantity {
-  position: absolute;
-  top: -1%;
-  left: 89.5%;
-}
-.see-quantity h5 {
-  background-color: red;
-  color: white;
-  padding: 3px;
-  border-radius: 4px;
-}

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "../../componentsCSS/Categories/ShowProductsByCategory.css";
+import "../../../componentsCSS/Categories/ShowProductsByCategory.css";
 import { ProductsListFiltered } from "./ProductsListFiltered";
 export function ShowProductsByCategory() {
   const [getCategories, setGetCategories] = useState([]);

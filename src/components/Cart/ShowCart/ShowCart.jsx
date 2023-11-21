@@ -2,7 +2,7 @@ import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "../../componentsCSS/Cart/ShowCart.css";
+import "../../../componentsCSS/Cart/ShowCart.css";
 export function ShowCart() {
   const [productsInCart, setProductsInCart] = useState([]);
   const [quantity, setQuantity] = useState(0);
@@ -22,12 +22,14 @@ export function ShowCart() {
           headers: { "Content-Type": "application/json" },
         }
       );
-      const updatedProductsInCart = productsInCart.map((product) => {
-        return {
-          ...product,
-          items: product.items.filter((item) => item._id !== itemId),
-        };
-      });
+      const updatedProductsInCart = productsInCart
+        .map((product) => {
+          return {
+            ...product,
+            items: product.items.filter((item) => item._id !== itemId),
+          };
+        })
+        .filter((product) => product.items.length > 0);
       setProductsInCart(updatedProductsInCart);
     } catch (err) {
       console.log(err);
@@ -43,6 +45,7 @@ export function ShowCart() {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
       });
+      setProductsInCart([]);
     } catch (err) {
       console.log(err);
     }
@@ -80,47 +83,47 @@ export function ShowCart() {
       </div>
       {productsInCart.length > 0 ? (
         productsInCart.map((product) =>
-          product.items.map((item) => (
-            <article key={item._id} className="article-product-in-cart">
-              <div className="products-in-cart">
-                <div className="product-in-cart-title">
-                  <h1>
-                    {item.productId
-                      ? item.productId.title
-                      : "Title not available"}
-                  </h1>
-                </div>
-                <div>
-                  {item.productId.category.name ? (
-                    <h1>{item.productId.category.name}</h1>
-                  ) : (
-                    <h1>No category</h1>
-                  )}
-                </div>
-                <div>
-                  <h1>${item.productId.price}</h1>
-                </div>
-                <div>
-                  <h1>{item.quantity}</h1>
-                </div>
-                <div className="icon-delete-product-cart">
-                  <FontAwesomeIcon
-                    icon={faTrash}
-                    onClick={() => handleProductCartDelete(item.productId._id)}
-                  />
-                </div>
-                <div className="icon-update-product-cart">
-                  <Link to={`/update-product-cart/${item.productId._id}`}>
-                    <FontAwesomeIcon icon={faPen} />
-                  </Link>
-                </div>
-              </div>
-            </article>
-          ))
+          product.items.length > 0
+            ? product.items.map((item) => (
+                <article key={item._id} className="article-product-in-cart">
+                  <div className="products-in-cart">
+                    <div className="product-in-cart-title">
+                      <h1>{item.productId.title}</h1>
+                    </div>
+                    <div>
+                      {item.productId.category ? (
+                        <h1>{item.productId.category.name}</h1>
+                      ) : (
+                        <h1>No category</h1>
+                      )}
+                    </div>
+                    <div>
+                      <h1>${item.productId.price}</h1>
+                    </div>
+                    <div>
+                      <h1>{item.quantity}</h1>
+                    </div>
+                    <div className="icon-delete-product-cart">
+                      <FontAwesomeIcon
+                        icon={faTrash}
+                        onClick={() =>
+                          handleProductCartDelete(item.productId._id)
+                        }
+                      />
+                    </div>
+                    <div className="icon-update-product-cart">
+                      <Link to={`/update-product-cart/${item.productId._id}`}>
+                        <FontAwesomeIcon icon={faPen} />
+                      </Link>
+                    </div>
+                  </div>
+                </article>
+              ))
+            : null
         )
       ) : (
-        <div>
-          <p>The cart is empty</p>
+        <div className="message-add-products-at-cart">
+          <p>¡Add products to the cart!</p>
         </div>
       )}
       <div className="quantity-price-delete">

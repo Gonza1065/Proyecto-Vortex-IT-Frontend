@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
+import "../../../componentsCSS/Categories/FormUpdateCategory.css";
 export function FormUpdateCategory() {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -45,7 +45,7 @@ export function FormUpdateCategory() {
 
   return (
     <>
-      <form action="" onSubmit={handleSubmit}>
+      <form action="" onSubmit={handleSubmit} className="form-update-category">
         <input
           type="text"
           name="name"
@@ -53,7 +53,9 @@ export function FormUpdateCategory() {
           value={formData.name}
           onChange={handleInputChange}
         />
-        <button type="submit">Update Category</button>
+        <div className="btn-update-category">
+          <button type="submit">Update Category</button>
+        </div>
       </form>
     </>
   );

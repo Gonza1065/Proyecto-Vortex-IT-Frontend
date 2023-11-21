@@ -46,3 +46,9 @@
   border-radius: 10px;
   cursor: pointer;
 }
+.message-add-products-at-cart {
+  text-align: center;
+}
+.cart-icon {
+  display: none;
+}

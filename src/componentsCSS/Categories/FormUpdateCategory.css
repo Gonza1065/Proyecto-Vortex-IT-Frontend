@@ -1,0 +1,21 @@
+.form-update-category {
+  margin-left: 100px;
+  margin-right: 100px;
+  display: flex;
+  flex-direction: column;
+}
+.form-update-category input {
+  padding: 20px;
+  margin: 10px;
+}
+.btn-update-category {
+  text-align: center;
+}
+.btn-update-category button {
+  padding: 5px;
+  font-size: 20px;
+  border-style: none;
+  background-color: burlywood;
+  border-radius: 5px;
+  cursor: pointer;
+}

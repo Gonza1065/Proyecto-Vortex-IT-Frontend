@@ -10,6 +10,7 @@ export function FormUpdateProduct() {
     name: "",
     price: "",
   });
+  const [errorMessage, setErrorMessage] = useState("");
   useEffect(() => {
     fetch(`http://localhost:5000/api/products/${id}`)
       .then((res) => res.json())
@@ -30,10 +31,20 @@ export function FormUpdateProduct() {
       ...formData,
       [name]: value,
     });
+    setErrorMessage("");
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (
+      !formData.title ||
+      !formData.description ||
+      !formData.name ||
+      !formData.price
+    ) {
+      setErrorMessage("All fields are required");
+      return;
+    }
     try {
       fetch(`http://localhost:5000/api/products/update-product/${id}`, {
         method: "PATCH",
@@ -82,6 +93,7 @@ export function FormUpdateProduct() {
         <div className="btn-update-product">
           <button type="submit">Update Product</button>
         </div>
+        {errorMessage && <p>{errorMessage}</p>}
       </form>
     </>
   );

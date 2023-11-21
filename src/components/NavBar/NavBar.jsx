@@ -2,7 +2,7 @@ import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import "../../componentsCSS/NavBar/NavBar.css";
-import { Cart } from "../Cart/Cart";
+import { Cart } from "../Cart/ShowCart/Cart";
 import { AddCategory } from "../Category/CreateCategory/AddCategory";
 import { AddProduct } from "../Products/CreateProduct/AddProduct";
 export function NavBar() {

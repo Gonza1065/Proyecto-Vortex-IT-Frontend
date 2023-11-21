@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
+import "../../../componentsCSS/Cart/UpdateProductCart.css";
 export function UpdateProductCart() {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -21,7 +21,9 @@ export function UpdateProductCart() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    if (!formData.quantity || formData.quantity === 0) {
+      setErrorMessage(true);
+    }
     try {
       fetch(`http://localhost:5000/api/cart/update-product-cart/${id}`, {
         method: "PATCH",
@@ -45,11 +47,16 @@ export function UpdateProductCart() {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    setErrorMessage(false);
   };
 
   return (
     <>
-      <form action="" onSubmit={handleSubmit}>
+      <form
+        action=""
+        onSubmit={handleSubmit}
+        className="form-update-product-cart"
+      >
         <input
           type="text"
           name="quantity"
@@ -57,7 +64,9 @@ export function UpdateProductCart() {
           value={formData.quantity}
           onChange={handleInputChange}
         />
-        <button type="submit">Update Quantity</button>
+        <div className="btn-update-quantity">
+          <button type="submit">Update Quantity</button>
+        </div>
         {errorMessage && <p>{errorMessage}</p>}
       </form>
     </>

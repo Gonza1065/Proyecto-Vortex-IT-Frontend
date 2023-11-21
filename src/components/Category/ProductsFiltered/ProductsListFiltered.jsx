@@ -1,4 +1,4 @@
-import "../../componentsCSS/Categories/ProductsListFiltered.css";
+import "../../../componentsCSS/Categories/ProductsListFiltered.css";
 import { ProductsFiltered } from "./ProductsFiltered";
 export function ProductsListFiltered({ products }) {
   return (
